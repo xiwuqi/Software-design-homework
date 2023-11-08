@@ -1,0 +1,43 @@
+@startuml
+
+class Camera {
+    +turnOn()
+    +turnOff()
+}
+
+class Light {
+    +turnOn()
+    +turnOff()
+}
+
+class Sensor {
+    +activate()
+    +deactivate()
+}
+
+class Alarm {
+    +alarmOn()
+    +alarmOff()
+}
+
+class SecurityFacade {
+    -Camera camera
+    -Light light
+    -Sensor sensor
+    -Alarm alarm
+
+    +activate()
+    +deactivate()
+}
+
+class FacadePatternTest {
+}
+
+SecurityFacade --> Camera: -camera
+SecurityFacade --> Light: -light
+SecurityFacade --> Sensor: -sensor
+SecurityFacade --> Alarm: -alarm
+
+FacadePatternTest .down.> SecurityFacade: <<uses>>
+
+@enduml

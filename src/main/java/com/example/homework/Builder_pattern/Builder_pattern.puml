@@ -1,0 +1,51 @@
+@startuml
+
+class Car {
+    - String wheel
+    - String oilBox
+    - String body
+    + setWheel(wheel : String) : void
+    + setOilBox(oilBox : String) : void
+    + setBody(body : String) : void
+    + toString() : String
+}
+
+abstract class CarBuilder {
+    - Car car
+    + createNewCar() : void
+    + buildWheel() : void
+    + buildOilBox() : void
+    + buildBody() : void
+    + getCar() : Car
+}
+
+class BMWCarBuilder {
+    + buildWheel() : void
+    + buildOilBox() : void
+    + buildBody() : void
+}
+
+class BenzCarBuilder {
+    + buildWheel() : void
+    + buildOilBox() : void
+    + buildBody() : void
+}
+
+class CarDirector {
+    - CarBuilder builder
+    + CarDirector(carBuilder : CarBuilder)
+    + constructCar() : Car
+}
+
+class CarBuilderTest {
+    + main(args : String[]) : void
+}
+
+CarBuilder <|-- BMWCarBuilder : generalization
+CarBuilder <|-- BenzCarBuilder : generalization
+CarDirector "1" -- "1" CarBuilder : association
+CarBuilder "*" -- "1" Car : composition
+CarBuilderTest ..> BMWCarBuilder : dependency
+CarBuilderTest ..> BenzCarBuilder : dependency
+
+@enduml

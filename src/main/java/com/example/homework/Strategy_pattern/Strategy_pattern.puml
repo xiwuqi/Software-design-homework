@@ -1,0 +1,33 @@
+@startuml
+
+interface DiscountStrategy {
+    +calculateDiscount(price : double) : double
+}
+
+class ComputerBookDiscount {
+    +calculateDiscount(price : double) : double
+}
+
+class EnglishBookDiscount {
+    +calculateDiscount(price : double) : double
+}
+
+class Book {
+    -name : String
+    -price : double
+    -discountStrategy : DiscountStrategy
+    +Book(name : String, price : double, discountStrategy : DiscountStrategy)
+    +getPrice() : double
+}
+
+class Main {
+    +main(args : String[]) : void
+}
+
+DiscountStrategy <|.. ComputerBookDiscount : implements
+DiscountStrategy <|.. EnglishBookDiscount : implements
+Book --> DiscountStrategy : has-a
+
+Main ..> Book : uses
+
+@enduml

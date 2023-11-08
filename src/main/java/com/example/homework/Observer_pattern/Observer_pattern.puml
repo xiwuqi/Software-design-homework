@@ -1,0 +1,35 @@
+@startuml
+
+' 定义界面或抽象类
+interface Observer {
+    {abstract} void update(Subject subject)
+}
+
+class Subject {
+    -observers : List<Observer>
+    +attach(observer : Observer) : void
+    +detach(observer : Observer) : void
+    +notifyObservers() : void
+}
+
+' 实体类
+class Product {
+    -name : String
+    -price : double
+    +setName(name : String) : void
+    +setPrice(price : double) : void
+    +getName() : String
+    +getPrice() : double
+}
+
+' 测试类
+class ObserverPatternDemo {
+    +main(args : String[]) : void
+}
+
+' 关系
+Subject <|-down- Product : generalization
+Subject o-down-> Observer : Association
+ObserverPatternDemo ..> Product : Dependency
+
+@enduml

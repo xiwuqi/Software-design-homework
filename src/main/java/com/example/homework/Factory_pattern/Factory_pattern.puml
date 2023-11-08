@@ -1,0 +1,37 @@
+@startuml
+
+interface Laptop {
+    {abstract} +assemble(): void
+}
+
+class HpLaptop {
+    +assemble(): void
+}
+
+class AcerLaptop {
+    +assemble(): void
+}
+
+class LenovoLaptop {
+    +assemble(): void
+}
+
+class DellLaptop {
+    +assemble(): void
+}
+
+HpLaptop -up-|> Laptop : implements
+AcerLaptop -up-|> Laptop : implements
+LenovoLaptop -up-|> Laptop : implements
+DellLaptop -up-|> Laptop : implements
+
+class LaptopFactory {
+    +createLaptop(type: String): Laptop
+}
+
+LaptopFactory ..> HpLaptop : creates >
+LaptopFactory ..> AcerLaptop : creates >
+LaptopFactory ..> LenovoLaptop : creates >
+LaptopFactory ..> DellLaptop : creates >
+
+@enduml

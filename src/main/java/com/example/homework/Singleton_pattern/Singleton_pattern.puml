@@ -1,0 +1,17 @@
+@startuml
+
+class AppConfig {
+    - static volatile AppConfig instance
+    - AppConfig()
+    + static getInstance() : AppConfig
+    + getConfigValue(key : String) : String
+}
+
+class SingletonTest {
+    + main(args : String[]) : void
+}
+
+
+SingletonTest .down.> AppConfig : uses >>
+
+@enduml

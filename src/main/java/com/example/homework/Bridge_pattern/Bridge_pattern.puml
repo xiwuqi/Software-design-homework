@@ -1,0 +1,77 @@
+@startuml
+
+' 抽象
+interface CoffeeSize {
+    void pourCoffee()
+}
+
+class JorumCoffee {
+    void pourCoffee()
+}
+
+class MediumCoffee {
+    void pourCoffee()
+}
+
+class SmallCoffee {
+    void pourCoffee()
+}
+
+' 实现
+interface CoffeeAdditives {
+    void addSomething()
+}
+
+class Milk {
+    void addSomething()
+}
+
+class Sugar {
+    void addSomething()
+}
+
+class Lemon {
+    void addSomething()
+}
+
+' 抽象与实现之间的桥梁
+abstract class Coffee {
+    {field} CoffeeSize size
+    {field} CoffeeAdditives additives
+    {abstract} void makeCoffee()
+}
+
+' 细化的抽象
+class RefinedCoffee {
+    void makeCoffee()
+}
+
+' 测试类
+class CoffeeTest {
+}
+
+' 泛化关系
+JorumCoffee -|> CoffeeSize
+MediumCoffee -|> CoffeeSize
+SmallCoffee -|> CoffeeSize
+
+Milk -|> CoffeeAdditives
+Sugar -|> CoffeeAdditives
+Lemon -|> CoffeeAdditives
+
+RefinedCoffee -|> Coffee
+
+' 关联关系
+Coffee "1" *-- "1" CoffeeSize : has >
+Coffee "1" o-- "1" CoffeeAdditives : has >
+
+' 依赖关系
+CoffeeTest ..> RefinedCoffee : uses >
+CoffeeTest ..> JorumCoffee : uses >
+CoffeeTest ..> MediumCoffee : uses >
+CoffeeTest ..> SmallCoffee : uses >
+CoffeeTest ..> Milk : uses >
+CoffeeTest ..> Sugar : uses >
+CoffeeTest ..> Lemon : uses >
+
+@enduml

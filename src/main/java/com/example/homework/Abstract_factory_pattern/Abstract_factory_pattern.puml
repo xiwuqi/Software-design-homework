@@ -1,0 +1,68 @@
+@startuml
+
+interface Hamburg {
+    void prepare()
+}
+
+interface Cola {
+    void pour()
+}
+
+interface FastFoodFactory {
+    Hamburg createHamburg()
+    Cola createCola()
+}
+
+class McDonaldsHamburg {
+    void prepare()
+}
+
+class McDonaldsCola {
+    void pour()
+}
+
+class KFCHamburg {
+    void prepare()
+}
+
+class KFCCola {
+    void pour()
+}
+
+class McDonaldsFactory {
+    + createHamburg() : Hamburg
+    + createCola() : Cola
+}
+
+class KFCFactory {
+    + createHamburg() : Hamburg
+    + createCola() : Cola
+}
+
+class Client {
+    - hamburg : Hamburg
+    - cola : Cola
+    + serveMeal() : void
+    + main(args : String[]) : void
+}
+
+Hamburg <|.. McDonaldsHamburg
+Hamburg <|.. KFCHamburg
+
+Cola <|.. McDonaldsCola
+Cola <|.. KFCCola
+
+FastFoodFactory <|.. McDonaldsFactory
+FastFoodFactory <|.. KFCFactory
+
+McDonaldsFactory ..> McDonaldsHamburg : creates >
+McDonaldsFactory ..> McDonaldsCola : creates >
+
+KFCFactory ..> KFCHamburg : creates >
+KFCFactory ..> KFCCola : creates >
+
+Client -right-> FastFoodFactory : uses >
+Client -down-> Hamburg : uses >
+Client -down-> Cola : uses >
+
+@enduml

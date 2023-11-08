@@ -1,0 +1,52 @@
+@startuml
+
+' 抽象组件
+abstract class Sheep {
+    - int life
+    + abstract void displayAbilities()
+}
+
+' 具体组件
+class HappySheep {
+    + void displayAbilities()
+}
+
+' 抽象装饰器
+abstract class SheepDecorator {
+    - Sheep decoratedSheep
+    + void displayAbilities()
+}
+
+' 具体装饰器
+class RedAppleDecorator {
+    + void displayAbilities()
+}
+
+class GreenAppleDecorator {
+    + void displayAbilities()
+}
+
+class YellowAppleDecorator {
+    + void displayAbilities()
+}
+
+' 测试类
+class DecoratorPatternTest {
+}
+
+' 泛化关系，表示继承
+HappySheep --|> Sheep
+SheepDecorator -|> Sheep
+
+' 关联关系，特别是在装饰器模式中的关联关系
+SheepDecorator o-- Sheep
+
+' 具体的装饰器关系
+RedAppleDecorator --|> SheepDecorator
+GreenAppleDecorator --|> SheepDecorator
+YellowAppleDecorator --|> SheepDecorator
+
+' 测试类与具体构件的依赖关系
+DecoratorPatternTest .down.> HappySheep : uses >
+
+@enduml

@@ -1,0 +1,47 @@
+@startuml
+
+'声明接口
+interface Shape {
+  +draw(): void
+}
+
+'声明具体类
+class Circle {
+  +draw(): void
+}
+class Rectangle {
+  +draw(): void
+}
+class Line {
+  +draw(): void
+}
+
+'声明被适配者类
+class Angle {
+  +drawAngle(): void
+}
+
+'声明适配器类
+class AngleAdapter {
+  -angle: Angle
+  +draw(): void
+}
+
+'声明测试类，依赖于Shape接口
+class ShapeTest {
+  +main(args: String[]): void
+}
+
+'实现关系
+Circle ..|> Shape
+Rectangle ..|> Shape
+Line ..|> Shape
+AngleAdapter ..|> Shape
+
+'依赖关系
+ShapeTest ..> Shape : Uses ->
+
+'关联关系
+AngleAdapter --> Angle
+
+@enduml
