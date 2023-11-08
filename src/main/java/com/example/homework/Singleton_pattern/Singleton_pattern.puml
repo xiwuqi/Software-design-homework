@@ -12,6 +12,7 @@ class SingletonTest {
 }
 
 
-SingletonTest .down.> AppConfig : uses >>
+SingletonTest .down.> AppConfig : uses >
+AppConfig <--o AppConfig
 
 @enduml

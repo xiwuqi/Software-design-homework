@@ -20,10 +20,10 @@ class DellLaptop {
     +assemble(): void
 }
 
-HpLaptop -up-|> Laptop : implements
-AcerLaptop -up-|> Laptop : implements
-LenovoLaptop -up-|> Laptop : implements
-DellLaptop -up-|> Laptop : implements
+HpLaptop ..-|> Laptop : implements
+AcerLaptop ..up-|> Laptop : implements
+LenovoLaptop ..up-|> Laptop : implements
+DellLaptop ..up-|> Laptop : implements
 
 class LaptopFactory {
     +createLaptop(type: String): Laptop

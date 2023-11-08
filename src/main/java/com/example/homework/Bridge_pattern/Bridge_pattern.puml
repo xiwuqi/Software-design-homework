@@ -50,14 +50,14 @@ class RefinedCoffee {
 class CoffeeTest {
 }
 
-' 泛化关系
-JorumCoffee -|> CoffeeSize
-MediumCoffee -|> CoffeeSize
-SmallCoffee -|> CoffeeSize
+' 实现关系
+JorumCoffee ..-|> CoffeeSize
+MediumCoffee ..-|> CoffeeSize
+SmallCoffee ..-|> CoffeeSize
 
-Milk -|> CoffeeAdditives
-Sugar -|> CoffeeAdditives
-Lemon -|> CoffeeAdditives
+Milk ..-|> CoffeeAdditives
+Sugar ..-|> CoffeeAdditives
+Lemon ..-|> CoffeeAdditives
 
 RefinedCoffee -|> Coffee
 

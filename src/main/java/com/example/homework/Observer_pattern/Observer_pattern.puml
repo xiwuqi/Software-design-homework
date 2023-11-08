@@ -1,35 +1,36 @@
 @startuml
 
-' 定义界面或抽象类
 interface Observer {
-    {abstract} void update(Subject subject)
+    void update(String productName, double newPrice)
 }
 
-class Subject {
-    -observers : List<Observer>
-    +attach(observer : Observer) : void
-    +detach(observer : Observer) : void
-    +notifyObservers() : void
+class Member {
+    - memberName : String
+    __
+    + Member(memberName : String)
+    + update(productName : String, newPrice : double) : void
 }
 
-' 实体类
 class Product {
-    -name : String
-    -price : double
-    +setName(name : String) : void
-    +setPrice(price : double) : void
-    +getName() : String
-    +getPrice() : double
+    - name : String
+    - price : double
+    - observers : List<Observer>
+    __
+    + Product(name : String, price : double)
+    + addObserver(observer : Observer) : void
+    + removeObserver(observer : Observer) : void
+    + setName(name : String) : void
+    + setPrice(price : double) : void
+    - notifyObservers() : void
 }
 
-' 测试类
 class ObserverPatternDemo {
-    +main(args : String[]) : void
 }
 
-' 关系
-Subject <|-down- Product : generalization
-Subject o-down-> Observer : Association
-ObserverPatternDemo ..> Product : Dependency
+Member ..|> Observer : implements
+Product --> "0..*" Observer : observers
+ObserverPatternDemo ..-> Member : creates >
+ObserverPatternDemo ..-> Product : creates >
+
 
 @enduml
