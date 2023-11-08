@@ -38,6 +38,6 @@ SecurityFacade --> Light: -light
 SecurityFacade --> Sensor: -sensor
 SecurityFacade --> Alarm: -alarm
 
-FacadePatternTest .down.> SecurityFacade: <<uses>>
+FacadePatternTest .down.> SecurityFacade: uses >
 
 @enduml
